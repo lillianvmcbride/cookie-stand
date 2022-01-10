@@ -41,3 +41,29 @@ let lima = {
   hourlyCustArr: [],
   hourlyCookieArr: [],
 };
+
+function setHourlyCust(min, max) {
+  let result = (Math.floor(Math.random()))(max-min)+min;
+  return result;
+}
+
+function setHourlyCookie(avg, cust) {
+  let cookies = Math.floor(avg*cust);
+  return cookies;
+}
+
+for (let i=0; i<15; i++) {
+  seattle.hourlyCustArr[i] = setHourlyCust(seattle.minCust, seattle.maxCust);
+}
+for (let i=0; i<15; i++) {
+  seattle.hourlyCookieArr[i] = setHourlyCookie(seattle.avg, seattle.hourlyCustArr[i]);
+}
+let prints = document.getElementbyId('seattle');
+let stats = document.createElement('ul');
+prints.appendChild(stats);
+for (let i=0; i<15; i++) {
+  let data = document.createElement('li');
+  data.textContent(hoursArr[i] + ' ' + seattle.hourlyCustArr[i] + ', ' + seattle.hourlyCookieArr[i]);
+  stats.appendChild(data);
+}
+
