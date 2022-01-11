@@ -2,58 +2,33 @@
 
 console.log(Math.random());
 
+let citiesArr = ['Seattle', 'Tokyo', 'Dubai', 'Paris', 'Lima'];
 let hoursArr = ['6AM', '7AM', '8AM', '9AM', '10AM', '11AM', 'NOON', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM'];
 
-let seattle = {
-  minCust: 23,
-  maxCust: 65,
-  avgCookie: 6.3,
-  hourlyCustArr: [],
-  hourlyCookieArr: [],
-};
-
-let tokyo = {
-  minCust: 3,
-  maxCust: 24,
-  avgCookie: 1.2,
-  hourlyCustArr: [],
-  hourlyCookieArr: [],
-};
-
-let dubai = {
-  minCust: 11,
-  maxCust: 38,
-  avgCookie: 3.7,
-  hourlyCustArr: [],
-  hourlyCookieArr: [],
-};
-
-let paris = {
-  minCust: 20,
-  maxCust: 38,
-  avgCookie: 2.3,
-  hourlyCustArr: [],
-  hourlyCookieArr: [],
-};
-
-let lima = {
-  minCust: 2,
-  maxCust: 16,
-  avgCookie: 4.6,
-  hourlyCustArr: [],
-  hourlyCookieArr: [],
-};
-
-function setHourlyCust(min, max) {
-  let result = Math.floor((Math.random())*(max-min)+min);
-  return result;
+function Locations(city, min, max, avg){
+  this.min = min;
+  this.max = max;
+  this.avg =avg;
+  this.hourlyCustArr = [];
+  this.hourlyCookieArr = [];
 }
 
-function setHourlyCookie(avg, cust) {
+Locations.prototype.setHourlyCust = function() {
+  let result = Math.floor((Math.random())*(this.max-this.min)+this.min);
+  return result;
+};
+
+Locations.prototype.setHourlyCookie = function() {
   let cookies = avg*cust;
   cookies = Math.floor(cookies);
   return cookies;
-}
+};
+
+let seattle = new Locations (23, 65, 6.3);
+let tokyo = new Locations (3, 24, 1.2);
+let dubai = new Locations (11, 38, 3.7);
+let paris = new Locations (20, 38, 2.3);
+let lima = new Locations (2, 16, 4,6);
 
 for (let i=0; i<15; i++) {
   seattle.hourlyCustArr[i] = setHourlyCust(seattle.minCust, seattle.maxCust);
