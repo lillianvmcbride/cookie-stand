@@ -71,3 +71,66 @@ for (let i=0; i<15; i++) {
   stats.appendChild(data);
 }
 
+for (let i=0; i<15; i++) {
+  tokyo.hourlyCustArr[i] = setHourlyCust(tokyo.minCust, tokyo.maxCust);
+  console.log(tokyo.hourlyCustArr);
+}
+for (let i=0; i<15; i++) {
+  tokyo.hourlyCookieArr[i] = setHourlyCookie(tokyo.avgCookie, tokyo.hourlyCustArr[i]);
+}
+prints = document.getElementById('tokyo');
+stats = document.createElement('ul');
+prints.appendChild(stats);
+for (let i=0; i<15; i++) {
+  let data = document.createElement('li');
+  data.textContent = (hoursArr[i] + ' ' + tokyo.hourlyCustArr[i] + ' customers, ' + tokyo.hourlyCookieArr[i]) + ' cookies!';
+  stats.appendChild(data);
+}
+
+for (let i=0; i<15; i++) {
+  dubai.hourlyCustArr[i] = setHourlyCust(dubai.minCust, dubai.maxCust);
+  console.log(dubai.hourlyCustArr);
+}
+for (let i=0; i<15; i++) {
+  dubai.hourlyCookieArr[i] = setHourlyCookie(dubai.avgCookie, dubai.hourlyCustArr[i]);
+}
+prints = document.getElementById('dubai');
+stats = document.createElement('ul');
+prints.appendChild(stats);
+for (let i=0; i<15; i++) {
+  let data = document.createElement('li');
+  data.textContent = (hoursArr[i] + ' ' + dubai.hourlyCustArr[i] + ' customers, ' + dubai.hourlyCookieArr[i]) + ' cookies!';
+  stats.appendChild(data);
+}
+
+for (let i=0; i<15; i++) {
+  paris.hourlyCustArr[i] = setHourlyCust(paris.minCust, paris.maxCust);
+  console.log(paris.hourlyCustArr);
+}
+for (let i=0; i<15; i++) {
+  paris.hourlyCookieArr[i] = setHourlyCookie(paris.avgCookie, paris.hourlyCustArr[i]);
+}
+prints = document.getElementById('paris');
+stats = document.createElement('ul');
+prints.appendChild(stats);
+for (let i=0; i<15; i++) {
+  let data = document.createElement('li');
+  data.textContent = (hoursArr[i] + ' ' + paris.hourlyCustArr[i] + ' customers, ' + paris.hourlyCookieArr[i]) + ' cookies!';
+  stats.appendChild(data);
+}
+
+for (let i=0; i<15; i++) {
+  lima.hourlyCustArr[i] = setHourlyCust(lima.minCust, lima.maxCust);
+  console.log(lima.hourlyCustArr);
+}
+for (let i=0; i<15; i++) {
+  lima.hourlyCookieArr[i] = setHourlyCookie(lima.avgCookie, lima.hourlyCustArr[i]);
+}
+prints = document.getElementById('lima');
+stats = document.createElement('ul');
+prints.appendChild(stats);
+for (let i=0; i<15; i++) {
+  let data = document.createElement('li');
+  data.textContent = (hoursArr[i] + ' ' + lima.hourlyCustArr[i] + ' customers, ' + lima.hourlyCookieArr[i]) + ' cookies!';
+  stats.appendChild(data);
+}
