@@ -1,6 +1,8 @@
 'use strict';
 
-let hoursArr = ['6AM', '7AM', '8AM', '9AM', '10AM', '11AM', 'NOON', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM'];
+console.log(Math.random());
+
+let hoursArr = ['6AM', '7AM', '8AM', '9AM', '10AM', '11AM', 'NOON', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM'];
 
 let seattle = {
   minCust: 23,
@@ -43,27 +45,29 @@ let lima = {
 };
 
 function setHourlyCust(min, max) {
-  let result = (Math.floor(Math.random()))(max-min)+min;
+  let result = Math.floor((Math.random())*(max-min)+min);
   return result;
 }
 
 function setHourlyCookie(avg, cust) {
-  let cookies = Math.floor(avg*cust);
+  let cookies = avg*cust;
+  cookies = Math.floor(cookies);
   return cookies;
 }
 
 for (let i=0; i<15; i++) {
   seattle.hourlyCustArr[i] = setHourlyCust(seattle.minCust, seattle.maxCust);
+  console.log(seattle.hourlyCustArr);
 }
 for (let i=0; i<15; i++) {
-  seattle.hourlyCookieArr[i] = setHourlyCookie(seattle.avg, seattle.hourlyCustArr[i]);
+  seattle.hourlyCookieArr[i] = setHourlyCookie(seattle.avgCookie, seattle.hourlyCustArr[i]);
 }
-let prints = document.getElementbyId('seattle');
+let prints = document.getElementById('seattle');
 let stats = document.createElement('ul');
 prints.appendChild(stats);
 for (let i=0; i<15; i++) {
   let data = document.createElement('li');
-  data.textContent(hoursArr[i] + ' ' + seattle.hourlyCustArr[i] + ', ' + seattle.hourlyCookieArr[i]);
+  data.textContent = (hoursArr[i] + ' ' + seattle.hourlyCustArr[i] + ' customers, ' + seattle.hourlyCookieArr[i]) + ' cookies!';
   stats.appendChild(data);
 }
 
