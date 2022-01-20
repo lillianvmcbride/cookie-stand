@@ -57,22 +57,6 @@ Lima.fillHourlyCust();
 Lima.fillHourlyCookie();
 citiesArr.push(Lima);
 
-function renderHours() {
-  let tableHeader = document.getElementById('hours');
-  let headerRow = document.createElement('tr');
-  let empty = document.createElement('td');
-  tableHeader.appendChild(headerRow);
-  headerRow.appendChild(empty);
-  for (let i = 0; i < hoursArr.length; i++) {
-    var hour = document.createElement('td');
-    hour.textContent = hoursArr[i];
-    headerRow.appendChild(hour);
-  }
-  let storeTotals = document.createElement('td');
-  storeTotals.textContent = 'Daily Store Total';
-  headerRow.appendChild(storeTotals);
-}
-
 Locations.prototype.renderData = function() {
   let tableBody = document.getElementById('sales');
   var storeData = document.createElement('tr');
@@ -92,9 +76,54 @@ Locations.prototype.renderData = function() {
   storeData.appendChild(storeTotal);
 };
 
-function renderHourlyTotals() {
-
+function renderHours() {
+  let tableHeader = document.getElementById('hours');
+  let headerRow = document.createElement('tr');
+  let empty = document.createElement('td');
+  tableHeader.appendChild(headerRow);
+  headerRow.appendChild(empty);
+  for (let i = 0; i < hoursArr.length; i++) {
+    var hour = document.createElement('td');
+    hour.textContent = hoursArr[i];
+    headerRow.appendChild(hour);
+  }
+  let storeTotals = document.createElement('td');
+  storeTotals.textContent = 'Daily Store Total';
+  headerRow.appendChild(storeTotals);
 }
+
+function renderHourlyTotals() {
+  let footer = document.getElementById('tfoot');
+  let footerRow = document.createElement('tr');
+  let footerLabel = document.createElement('td');
+  footerLabel.textContent = 'Totals';
+  footer.appendChild(footerRow);
+  footer.appendChild(footerLabel);
+}
+
+// function createFooterRow() {
+//   var footerRow = document.createElement('tr');
+//   var footerData = document.createElement('td');
+//   footerData.textContent = 'Totals';
+//   footerRow.appendChild(footerData);
+//   var totalSales = 0;
+//   for (var i = 0; i < hourlyTimeArray.length; i++){
+//     var hourlyData = document.createElement('td');
+//     var hourlyTotal = 0;
+//     console.log(locations);
+//     for (var j = 0; j< locations.length; j++) {
+//       hourlyTotal += locations[j].hourlyCookieArray[i];
+//     }
+//     totalSales += hourlyTotal;
+//     hourlyData.textContent = hourlyTotal;
+//     footerRow.appendChild(hourlyData);
+//   }
+//   var finalSales = document.createElement('td');
+//   finalSales.textContent = totalSales;
+//   footerRow.appendChild(finalSales);
+//   footer.appendChild(footerRow);
+//   storeTable.appendChild(footer);
+// }
 
 renderHours();
 
@@ -104,5 +133,5 @@ Dubai.renderData();
 Paris.renderData();
 Lima.renderData();
 
-// renderHourlyTotals();
+renderHourlyTotals();
 
