@@ -204,7 +204,7 @@ function renderManHours() {
       headerRow.appendChild(hour);
     }
     let hoursTotalled = document.createElement('td');
-    hoursTotalled.textContent = 'Daily Total Man Hours';
+    hoursTotalled.textContent = 'Total Man Hours';
     headerRow.appendChild(hoursTotalled);
     let realFooterRow = document.createElement('tr');
     let footerLabel = document.createElement('td');

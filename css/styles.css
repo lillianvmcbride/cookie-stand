@@ -1,14 +1,31 @@
 body {
-  background-color: salmon;
+  background-color: #E5DDD7;
+  font-family: 'Inter', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+
+aside {
+  margin-left: 40px;
+  position: fixed;
+  float: left;
+  width: 200px;
+  font-size: 30px;
+  line-height: 1.5;
+  color: maroon;
+  background-color: bisque;
+  font-family: 'Lora', serif;
+  text-align: center;
+  border-radius: 15%;
 }
 
 h1 {
   text-align: center;
   font-size: 36px;
   font-weight: bold;
-  padding-bottom: 20px;
-  color:lightgoldenrodyellow;
-  text-shadow: 2px 2px 1px black;
+  padding: 20px;
+  color:#F9636E;
+  text-shadow: 2px 2px 1px #431E1D;
 }
 
 nav {
@@ -18,12 +35,12 @@ nav {
 }
 
 :link, :visited {
-  border-radius: 20%;
-  background-color: lightgoldenrodyellow;
-  padding: 10px;
-  color: black;
+  border-radius: 25%;
+  background-color: #FFFEFE;
+  padding: 12px;
+  color: #431E1D;
   font-size: 20px;
-  box-shadow: 1px 1px 3px black;
+  box-shadow: 1px 1px 3px #431E1D;
   margin: 15px;
 }
 
@@ -32,11 +49,17 @@ nav {
 }
 
 td {
+  color: #431E1D;
   font-size: 16px;
   padding: 5px;
-  border: 2px solid black;
+  border: 2px solid #431E1D;
 }
 
 tfoot {
   font-weight: bolder;
+}
+
+main {
+  text-align: center;
+  margin: 0 auto;
 }
