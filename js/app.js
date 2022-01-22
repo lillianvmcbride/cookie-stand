@@ -2,7 +2,6 @@
 
 let citiesArr = [];
 let hoursArr = ['6AM', '7AM', '8AM', '9AM', '10AM', '11AM', 'NOON', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM'];
-let manHours = [];
 
 function Locations(city, min, max, avg){
   this.city = city;
@@ -204,11 +203,11 @@ function renderManHours() {
       headerRow.appendChild(hour);
     }
     let hoursTotalled = document.createElement('td');
-    hoursTotalled.textContent = 'Total Man Hours';
+    hoursTotalled.textContent = 'Total Hours';
     headerRow.appendChild(hoursTotalled);
     let realFooterRow = document.createElement('tr');
     let footerLabel = document.createElement('td');
-    footerLabel.textContent = 'Man Hours';
+    footerLabel.textContent = 'Hours';
     realFooterRow.appendChild(footerLabel);
     let totalHours = 0;
     for (let i = 0; i < hoursArr.length; i++) {
