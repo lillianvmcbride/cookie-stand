@@ -2,9 +2,11 @@
 
 let citiesArr = [];
 let hoursArr = ['6AM', '7AM', '8AM', '9AM', '10AM', '11AM', 'NOON', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM'];
-let manHours = [];
+var totals = document.createElement('tfoot');
+totals.id = 'totalRow';
+var storeTable = document.getElementById('table');
 
-function Locations(city, min, max, avg){
+function Location(city, min, max, avg){
   this.city = city;
   this.min = min;
   this.max = max;
@@ -20,7 +22,7 @@ function Locations(city, min, max, avg){
 //Following functions fill store data arrays
 
 //Method fills array of customers served each hour on this day last year for store
-Locations.prototype.fillHourlyCust = function() {
+Location.prototype.fillHourlyCust = function() {
   let total = 0;
   for (let i = 0; i < hoursArr.length; i++) {
     let result = Math.floor((Math.random())*(this.max-this.min)+this.min);
@@ -31,7 +33,7 @@ Locations.prototype.fillHourlyCust = function() {
 };
 
 //Method fills array of cookies served each hour on this day last year for store
-Locations.prototype.fillHourlyCookie = function() {
+Location.prototype.fillHourlyCookie = function() {
   for (let i = 0; i < hoursArr.length; i++) {
     let cookies = this.avg*this.hourlyCustArr[i];
     cookies = Math.floor(cookies);
@@ -39,8 +41,8 @@ Locations.prototype.fillHourlyCookie = function() {
   }
 };
 
-//Method fills array of projected workers needed each hour for store
-Locations.prototype.fillWorkersNeeded = function() {
+// Method fills array of projected workers needed each hour for store
+Location.prototype.fillWorkersNeeded = function() {
   let bakers = 2;
   for (let i = 0; i < hoursArr.length; i++) {
     let cashiers = Math.ceil(this.hourlyCustArr[i]/20);
@@ -52,31 +54,31 @@ Locations.prototype.fillWorkersNeeded = function() {
 
 //Five initial store constructors
 
-let Seattle = new Locations ('Seattle', 23, 65, 6.3);
+let Seattle = new Location ('Seattle', 23, 65, 6.3);
 Seattle.fillHourlyCust();
 Seattle.fillHourlyCookie();
 Seattle.fillWorkersNeeded();
 citiesArr.push(Seattle);
 
-let Tokyo = new Locations ('Tokyo', 3, 24, 1.2);
+let Tokyo = new Location ('Tokyo', 3, 24, 1.2);
 Tokyo.fillHourlyCust();
 Tokyo.fillHourlyCookie();
 Tokyo.fillWorkersNeeded();
 citiesArr.push(Tokyo);
 
-let Dubai = new Locations ('Dubai', 11, 38, 3.7);
+let Dubai = new Location ('Dubai', 11, 38, 3.7);
 Dubai.fillHourlyCust();
 Dubai.fillHourlyCookie();
 Dubai.fillWorkersNeeded();
 citiesArr.push(Dubai);
 
-let Paris = new Locations ('Paris', 20, 38, 2.3);
+let Paris = new Location ('Paris', 20, 38, 2.3);
 Paris.fillHourlyCust();
 Paris.fillHourlyCookie();
 Paris.fillWorkersNeeded();
 citiesArr.push(Paris);
 
-let Lima = new Locations ('Lima', 2, 16, 4,6);
+let Lima = new Location ('Lima', 2, 16, 4,6);
 Lima.fillHourlyCust();
 Lima.fillHourlyCookie();
 Lima.fillWorkersNeeded();
@@ -102,7 +104,7 @@ function renderHours() {
 }
 
 //Renders last year's sales data for each hour for each store
-Locations.prototype.renderSalesData = function() {
+Location.prototype.renderSalesData = function() {
   if (document.getElementById('sales')) {
     let tableBody = document.getElementById('sales');
     var storeData = document.createElement('tr');
@@ -124,8 +126,8 @@ Locations.prototype.renderSalesData = function() {
 
 //Renders totals row on last years sale's data table
 function renderHourlyTotals() {
-  if (document.getElementById('totals')) {
-    let footer = document.getElementById('totals');
+  if (totals) {
+    let footer = totals;
     let footerRow = document.createElement('tr');
     let footerLabel = document.createElement('td');
     footerLabel.textContent = 'Totals';
@@ -139,6 +141,7 @@ function renderHourlyTotals() {
       }
       totalSales += hourTotal;
       hourlySales.textContent = hourTotal;
+      storeTable.appendChild(footer);
       footer.appendChild(footerRow);
       footerRow.appendChild(hourlySales);
     }
@@ -171,7 +174,7 @@ function renderWorkHours() {
 // Renders number of workers needed each hour assuming 1 worker serves 20 customers per hour
 // and two bakers are on duty at all times. Renders total workers needed assuming 8hr shifts.
 
-Locations.prototype.renderWorkersNeeded = function() {
+Location.prototype.renderWorkersNeeded = function() {
   if (document.getElementById('people')) {
     let tableBody = document.getElementById('people');
     var storeData = document.createElement('tr');
@@ -204,11 +207,11 @@ function renderManHours() {
       headerRow.appendChild(hour);
     }
     let hoursTotalled = document.createElement('td');
-    hoursTotalled.textContent = 'Total Man Hours';
+    hoursTotalled.textContent = 'Total Hours';
     headerRow.appendChild(hoursTotalled);
     let realFooterRow = document.createElement('tr');
     let footerLabel = document.createElement('td');
-    footerLabel.textContent = 'Man Hours';
+    footerLabel.textContent = 'Hours';
     realFooterRow.appendChild(footerLabel);
     let totalHours = 0;
     for (let i = 0; i < hoursArr.length; i++) {
@@ -219,6 +222,7 @@ function renderManHours() {
       }
       totalHours += hourTotal;
       hourlyTotal.textContent = hourTotal;
+      storeTable.appendChild(footer);
       footer.appendChild(realFooterRow);
       realFooterRow.appendChild(hourlyTotal);
     }
@@ -240,6 +244,31 @@ Paris.renderSalesData();
 Lima.renderSalesData();
 
 renderHourlyTotals();
+
+
+function handleFormSubmitted(event) {
+  event.preventDefault();
+  var shopInput = document.getElementById('shopLocation');
+  var shopValue = shopInput.value;
+  var minInput = document.getElementById('min');
+  var minValue = minInput.value;
+  var maxInput = document.getElementById('max');
+  var maxValue = maxInput.value;
+  var avgInput = document.getElementById('avg');
+  var avgValue = avgInput.value;
+  var newShop = new Location(shopValue, parseInt(minValue), parseInt(maxValue), parseFloat(avgValue));
+  newShop.fillHourlyCust();
+  newShop.fillHourlyCookie();
+  newShop.renderSalesData();
+  citiesArr.push(newShop);
+  var form = document.getElementById('form');
+  form.reset();
+  totals.innerHTML = '';
+  renderHourlyTotals();
+}
+var formElement = document.getElementById('form');
+console.log(formElement);
+formElement && formElement.addEventListener('submit', handleFormSubmitted);
 
 //Following invocations render projected workers needed table
 

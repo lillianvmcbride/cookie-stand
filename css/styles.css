@@ -4,7 +4,6 @@ body {
   font-family: 'Josefin Sans', sans-serif;
 }
 
-
 aside {
   margin-left: 40px;
   position: fixed;
@@ -17,6 +16,19 @@ aside {
   font-family: 'Lora', serif;
   text-align: center;
   border-radius: 15%;
+}
+
+p {
+  font-size: 18px;
+  padding-top: 10px;
+}
+
+h2 {
+  font-family: 'Inter', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 26px;
+  padding: 15px;
+  color: #431E1D;
 }
 
 h1 {
@@ -46,6 +58,7 @@ nav {
 
 #table {
   margin: 0 auto;
+  margin-bottom: 20px;
 }
 
 td {
@@ -53,6 +66,9 @@ td {
   font-size: 16px;
   padding: 5px;
   border: 2px solid #431E1D;
+  font-family: 'Inter', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
+  background-color: bisque;
 }
 
 tfoot {
@@ -62,4 +78,6 @@ tfoot {
 main {
   text-align: center;
   margin: 0 auto;
+  font-family: 'Lora', serif;
+  color: maroon;
 }
